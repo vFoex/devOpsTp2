@@ -1,13 +1,10 @@
 name: build-and-push-docker-image
 on:
-  push:
-    branches:
-      - main
   workflow_run:
     workflows: [test-backend]
+    branches: [main]
     types:
       - completed
-  pull_request:
 
 jobs:
   # define job to build and publish docker image
