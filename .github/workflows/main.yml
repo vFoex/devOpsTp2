@@ -30,14 +30,14 @@ jobs:
     # needs: test-backend
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-22.04
-
+    environment: DOCKERHUB
     # steps to perform in job
     steps:
       - name: Checkout code
         uses: actions/checkout@v2.5.0
 
       - name: Login to DockerHub
-        run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build image and push backend
         uses: docker/build-push-action@v3
